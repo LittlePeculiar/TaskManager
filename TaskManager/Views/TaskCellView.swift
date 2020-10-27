@@ -29,64 +29,59 @@ struct TaskCellView : View {
             }
             HStack(alignment: .center) {
                 Button(action: {
-                    // todo
-                    print("delete tapped")
+                    delete()
                 }) {
                     Text("X")
                         .frame(width: 20, height: 20)
                         .foregroundColor(Color.red)
                         .background(Color(red: 255/255, green: 215/255, blue: 213/255))
                         .clipShape(Circle())
-                }
+                }.buttonStyle(PlainButtonStyle())
 
                 Text(task.formattedDate())
 
                 Button(action: {
-                    // todo
-                    print("open calendar picker")
+                    openCalendar()
                 }) {
                     Image("calendar")
                         .padding(5)
                         .background(Circle().stroke(lineWidth: 2))
-                }
+                }.buttonStyle(PlainButtonStyle())
             }
             HStack(alignment: .center) {
                 Button(action: {
-                    // todo
-                    print("low priority tapped")
+                    update(priority: Priority.low)
                 }) {
                     Text("Low")
                         .font(.system(size: 16, weight: .light, design: .rounded))
                         .foregroundColor(Color.white)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 30)
                         .padding(10)
-                        .background(Color(red: 95/255, green: 205/255, blue: 141/255))
+                        .background(Color(Priority.low.color()))
                         .cornerRadius(10)
-                }
+                }.buttonStyle(PlainButtonStyle())
                 Button(action: {
-                    // todo
-                    print("medium priority tapped")
+                    update(priority: Priority.medium)
                 }) {
                     Text("Medium")
                         .font(.system(size: 16, weight: .light, design: .rounded))
                         .foregroundColor(Color.white)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 30)
                         .padding(10)
-                        .background(Color(red: 251/255, green: 131/255, blue: 51/255))
+                        .background(Color(Priority.medium.color()))
                         .cornerRadius(10)
-                }
+                }.buttonStyle(PlainButtonStyle())
                 Button(action: {
-                    // todo
-                    print("high priority tapped")
+                    update(priority: Priority.high)
                 }) {
                     Text("High")
                         .font(.system(size: 16, weight: .light, design: .rounded))
                         .foregroundColor(Color.white)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 30)
                         .padding(10)
-                        .background(Color(red: 255/255, green: 97/255, blue: 89/255))
+                        .background(Color(Priority.high.color()))
                         .cornerRadius(10)
-                }
+                }.buttonStyle(PlainButtonStyle())
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
@@ -102,5 +97,18 @@ struct TaskCellView : View {
 
     func toggleClosed() {
         isClosed.toggle()
+    }
+
+    func update(priority: Priority) {
+        task.priority = priority
+        print("todo - save new priority: \(priority)")
+    }
+
+    func delete() {
+        print("todo - delete this task")
+    }
+
+    func openCalendar() {
+        print("todo - open calendar picker and save new date")
     }
 }

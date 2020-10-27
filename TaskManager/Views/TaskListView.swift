@@ -43,4 +43,10 @@ struct TaskListView : View {
                             .shadow(color: .gray, radius: 2, x: 0, y: 0))
         }
     }
+
+    init(viewModel: TasksViewModel) {
+        self.viewModel = viewModel
+        UITableViewCell.appearance().selectionStyle = .none
+        UITableView.appearance().separatorStyle = .none
+    }
 }
